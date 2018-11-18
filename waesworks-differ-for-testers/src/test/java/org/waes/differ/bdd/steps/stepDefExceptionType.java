@@ -44,19 +44,6 @@ public class stepDefExceptionType {
         response= postRequest( bodyContent,  storageId, sideName);
     }
 
-    @Then("the GET response should contain type: {string} and Error {string}")
-    public void the_GET_response_should_contain_type(String rCode,String errorType) {
-        ResponseCode rs=getResponseCode( rCode);
-        response=getRequest(storageId);
-        response.then().statusCode(rs.getStatusCode());
-        if(rs.getStatusCode()==200&&errorType.equalsIgnoreCase("DIFFERENT_LENGTH"))
-        { assertEquals("The comparison type suppose to be equal ",
-                "Left side contains no value.", response.then().extract().body().jsonPath().get("detail"));
-            assertEquals("The comparison type suppose to be equal ",
-                    "DIFFERENT_LENGTH", response.then().extract().body().jsonPath().get("type"));
-        }
-    }
-
     @Then("the GET response should contain type: {string} and Error {string} and ErrorMessage {string}")
     public void the_GET_response_should_contain_type_and_Error_and_ErrorMessage(String rCode,String errorType, String errorMsg) {
         ResponseCode rs=getResponseCode( rCode);

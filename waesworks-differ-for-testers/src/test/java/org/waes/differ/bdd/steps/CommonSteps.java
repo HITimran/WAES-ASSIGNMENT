@@ -13,7 +13,7 @@ public class CommonSteps {
     final static Logger log = Logger.getLogger(CommonSteps.class.getName());
     public static Response postRequest(String bodyContent, int storageId,Sides side)
     {
-        System.out.println((String.format("post request on port "+PORT+" contentType "+CONTENT_TYPE+" SlideId "+storageId+" bodyContent "+bodyContent)));
+       log.info(String.format(String.format("POST request on side %s contentType %s SlideId %s bodyContent %s ",side.name(),CONTENT_TYPE,storageId,bodyContent)));
        return given()
                 .port(PORT)
                 .contentType(CONTENT_TYPE)
@@ -24,7 +24,7 @@ public class CommonSteps {
 
     public static Response postRequest(String bodyContent, int storageId,String side)
     {
-        System.out.println((String.format("post request on port "+PORT+" contentType "+CONTENT_TYPE+" SlideId "+storageId+" bodyContent "+bodyContent)));
+        log.info(String.format(String.format("POST request on side %s contentType %s SlideId %s bodyContent %s ",side,CONTENT_TYPE,storageId,bodyContent)));
         return given()
                 .port(PORT)
                 .contentType(CONTENT_TYPE)
@@ -35,7 +35,7 @@ public class CommonSteps {
 
     public static Response postRequestContentBodyAsIs(String bodyContent, int storageId,String side)
     {
-        System.out.println((String.format("post request on port "+PORT+" contentType "+CONTENT_TYPE+" SlideId "+storageId+" bodyContent "+bodyContent)));
+        log.info(String.format(String.format("POST request on side %s contentType %s SlideId %s bodyContent %s ",side,CONTENT_TYPE,storageId,bodyContent)));
         return given()
                 .port(PORT)
                 .contentType(CONTENT_TYPE)
@@ -46,6 +46,7 @@ public class CommonSteps {
 
     public static Response getRequest(int storageId)
     {
+        log.info(String.format(String.format("GET request from SlideId %s",storageId)));
        return given().
                 port(PORT).
                 contentType(CONTENT_TYPE).
@@ -56,18 +57,22 @@ public class CommonSteps {
     public static void assertCodeAndReason(Response response, String rCode)
     {
         ResponseCode rs=getResponseCode( rCode);
+        log.info(String.format(String.format("Assertion GET Response for status to be %s",rs.getStatusCode())));
+
         response.
             then().
             assertThat().
             statusCode(rs.getStatusCode());
+
         if(rs.getStatusCode()!=200&&rs.getStatusCode()!=500)
         {
+
+            log.info(String.format(String.format("Assertion GET Response for errorMessage to be %s",rs.getreason())));
             response.
                 then().
                 body(errorMessage,is(rs.getreason()));
         }
     }
-
 
     public static ResponseCode getResponseCode(String rCode)
     {

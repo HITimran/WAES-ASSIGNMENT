@@ -9,15 +9,17 @@ Ready-made project for a Tester/QA assignment.
 
 ## About Project
 
- ### Unit tests
 
  
 ## Running the application
 From the project root folder:  
 1. Run
- > **mvn clean test** 
-2. Open a seperate cmd and run  > **mvn exec:java** 
-3. While the server is up and running run `mvn verify` or `mvn install`
+    -   > **mvn clean test** 
+2. Open a seperate cmd and run  
+    - > **mvn exec:java** 
+4. While the server is up and running 
+5  Run
+-   > **mvn install** 
 
 After intalling the project successfully a directory will automatically gets created name 'reports'
 reports Content:

@@ -9,11 +9,14 @@ Ready-made project for a Tester/QA assignment.
 
 ## About Project
 
+ ### Unit tests
 
+ 
 ## Running the application
 From the project root folder:  
-1. run `mvn clean test`  
-2. Open a seperate cmd and run `mvn exec:java`
+1. Run
+ > **mvn clean test** 
+2. Open a seperate cmd and run  > **mvn exec:java** 
 3. While the server is up and running run `mvn verify` or `mvn install`
 
 After intalling the project successfully a directory will automatically gets created name 'reports'
@@ -36,7 +39,7 @@ Scenario:
 
 Suggestion for above Scenario:-
 - for vise-a-versa condition ,we need to implement message such as "Right side contains no value." 
-Presently we see no such message error as 204 (No Content)
+Presently client see an error as 204 (No Content) with no such message 
 ```
 
 ```
@@ -54,5 +57,9 @@ Same suppose to be handle for
 ```
 
 ```
-Implementation of DELETE and PUT request should also be done
+Nice to have DELETE and PUT request implementations.
+```
+
+```
+Nice to have/include lightweight Db Support
 ```

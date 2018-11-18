@@ -14,20 +14,20 @@ Ready-made project for a Tester/QA assignment.
 ## Running the application
 From the project root folder:  
 1. Run
-    -   > **mvn clean test** 
+    - > **mvn clean test** 
 2. Open a seperate cmd and run  
     - > **mvn exec:java** 
 4. While the server is up and running 
-5  Run
--   > **mvn install** 
+5. Run
+    - > **mvn install** 
 
-After intalling the project successfully a directory will automatically gets created name 'reports'
+After intalling the project successfully a directory will automatically gets created name 'report'
 reports Content:
 1. Test coverage report
     - /testCoverage-reports/index.html
     - /testCoverage-reports/jacoco-sessions.html
 2. Functional Test results
-    - cucumber-reports/cucumber-html-reports/overview-features.html
+    - cucumber-reports/cucumber-html-reports/overview-features.html [main report dont forget to exeplore]
     - cucumber-html-report/index.html
 
 ### Suggestion and Improvement:

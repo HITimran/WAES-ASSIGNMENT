@@ -18,13 +18,13 @@ public class Stepdefs {
     Response getResponse;
 
     @Before("@InitURL")
-    public void initiateRequest()
+    public void initiateRequestInDefaultHost()
     {
         RestAssured.baseURI = HTTP_LOCALHOST_DIFFASSIGN;
     }
 
-    @Given("a POST to http:\\/\\/localhost:{int}\\/diffassign\\/v{int}\\/diff\\/{int}\\/left with value {string}")
-    public void postingToLocalHostLeft(Integer int1, Integer int2, Integer storageId, String bodyContent) {
+    @Given("a POST to http:\\/\\/localhost:{int}\\/diffassign\\/v{int}\\/diff\\/{long}\\/left with value {string}")
+    public void postingRequestDefaultHostOnLeftSide(Integer int1, Integer int2, long storageId, String bodyContent) {
 
         postRequest( bodyContent,  storageId,Sides.left)
            .then().assertThat().statusCode(200)
@@ -32,25 +32,26 @@ public class Stepdefs {
                    .body(Sides.left.name(),is(bodyContent));
     }
 
-    @Given("a POST to http:\\/\\/localhost:{int}\\/diffassign\\/v{int}\\/diff\\/{int}\\/right with {string}")
-    public void postingToLocalHostRight(Integer int1, Integer int2, Integer storageId, String bodyContent) {
+    @Given("a POST to http:\\/\\/localhost:{int}\\/diffassign\\/v{int}\\/diff\\/{long}\\/right with {string}")
+    public void postingRequestDefaultHostOnRightSide(Integer int1, Integer int2, long storageId, String bodyContent) {
         postRequest( bodyContent,  storageId,Sides.right)
                 .then().assertThat().statusCode(200)
                 .and()
                 .body(Sides.right.name(),is(bodyContent));
     }
 
-    @When("sending a GET to http:\\/\\/localhost:{int}\\/diffassign\\/v{int}\\/diff\\/{int}\\/")
-    public void GetRequestFromLocalHost(Integer int1, Integer int2, Integer storageId) {
+    @When("sending a GET to http:\\/\\/localhost:{int}\\/diffassign\\/v{int}\\/diff\\/{long}\\/")
+    public void getRequestFromDefaultHost(Integer int1, Integer int2, long storageId) {
         getResponse=getRequest(storageId);
         getResponse.then()
                 .assertThat().statusCode(200);
     }
 
     @Then("the response should contain type: {string}")
-    public void the_response_should_contain_type(String string) {
+    public void verifyComparisionType(String string) {
         getResponse.then().statusCode(200);
         assertEquals("The comparison type suppose to be equal ",
                 string, getResponse.then().extract().body().jsonPath().get("type"));
     }
+
 }

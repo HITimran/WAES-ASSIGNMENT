@@ -7,11 +7,12 @@ import org.waes.differ.utils.Sides;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.waes.differ.utils.StringLiterals.*;
 
 public class CommonSteps {
     final static Logger log = Logger.getLogger(CommonSteps.class.getName());
-    public static Response postRequest(String bodyContent, int storageId,Sides side)
+    public static Response postRequest(String bodyContent, long storageId,Sides side)
     {
        log.info(String.format(String.format("POST request on side %s contentType %s SlideId %s bodyContent %s ",side.name(),CONTENT_TYPE,storageId,bodyContent)));
        return given()
@@ -22,7 +23,7 @@ public class CommonSteps {
                 .post(ENDPOINTS +storageId+"/"+ side.name());
     }
 
-    public static Response postRequest(String bodyContent, int storageId,String side)
+    public static Response postRequest(String bodyContent, long storageId,String side)
     {
         log.info(String.format(String.format("POST request on side %s contentType %s SlideId %s bodyContent %s ",side,CONTENT_TYPE,storageId,bodyContent)));
         return given()
@@ -33,7 +34,7 @@ public class CommonSteps {
                 .post(ENDPOINTS +storageId+"/"+ side);
     }
 
-    public static Response postRequestContentBodyAsIs(String bodyContent, int storageId,String side)
+    public static Response postRequestContentBodyAsIs(String bodyContent, long storageId,String side)
     {
         log.info(String.format(String.format("POST request on side %s contentType %s SlideId %s bodyContent %s ",side,CONTENT_TYPE,storageId,bodyContent)));
         return given()
@@ -44,7 +45,7 @@ public class CommonSteps {
                 .post(ENDPOINTS +storageId+"/"+ side);
     }
 
-    public static Response getRequest(int storageId)
+    public static Response getRequest(long storageId)
     {
         log.info(String.format(String.format("GET request from SlideId %s",storageId)));
        return given().
@@ -71,6 +72,25 @@ public class CommonSteps {
             response.
                 then().
                 body(errorMessage,is(rs.getreason()));
+        }
+    }
+
+    public static void assertCodeAndReasonMessage(Response response,String rCode,String errorType, String errorMsg)
+    {
+        ResponseCode rs=getResponseCode( rCode);
+
+        response.then().statusCode(rs.getStatusCode());
+        if(rs.getStatusCode()==200)
+        {
+            assertEquals("The comparison type suppose to be equal ",
+                    errorMsg, response.then().extract().body().jsonPath().get("detail"));
+
+            assertEquals("The comparison type suppose to be equal ",
+                    errorType, response.then().extract().body().jsonPath().get("type"));
+
+        }else if(rs.getStatusCode()==404){
+            assertEquals("The comparison type suppose to be equal ",
+                    errorMsg, response.then().extract().body().jsonPath().get("errorMessage"));
         }
     }
 

@@ -50,3 +50,13 @@ Feature: Functional Test for WebService
       | pqr12uVw1234|    pqr34uvw2334|     OK        | DIFFERENT_CHARS |  Values are different on char(s) [3-4] [6] [8-9]. |
       | WAESwaes1234WAESwaes1234WAESwaes1234WAESwaes1234WAESwaes1234WAESwaes1234| WaESWaes1224WaESWaes1224WaESWaes1224WaESWaes1224WaESWaes1224WaESWaes1224| OK | DIFFERENT_CHARS |  Values are different on char(s) [1] [4] [10] [13] [16] [22] [25] [28] [34] [37] [40] [46] [49] [52] [58] [61] [64] [70]. |
       |             0AQuickBrownFoxJumpsRightOverTheLazyDog1                    |    1AQuickBrownFoxJumpsRightOverTheLazyDog0                             | OK | DIFFERENT_CHARS |  Values are different on char(s) [0] [39]. |
+
+  @InitURL @IdNotFound
+  Scenario Outline: Test Scenarios for capturing IdNotFound Exception
+    Given a GET Request was made with <Id>
+    Then the GET response should contain type: "<responseType>" and Error "<ComparisionType>" and ErrorMessage "<ErrorMessage>"
+
+    Examples:
+      |           Id       |   responseType        | ComparisionType |           ErrorMessage                  |
+      |          1234      |     NOT_FOUND         | NOT_FOUND       |  ID 1234 not initialized.               |
+      |3454345345433453312 |     NOT_FOUND         | NOT_FOUND       | ID 3454345345433453312 not initialized. |

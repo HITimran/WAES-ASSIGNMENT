@@ -29,8 +29,6 @@ Feature: Functional Test to validate Exception type
       | O\wE       | O\     wE   | UNSUPPORTED_MEDIA_TYPE_JSON | UNSUPPORTED_MEDIA_TYPE_JSON |
 
   @InitURL
-  #IdNotFoundExceptionMapper
- # NoSuchElementExceptionMapper
   Scenario Outline: Test Scenarios for Exception Type SideNameNotSupportedException
     Given a POST request was made with "<postInValue>" with side name as "<side>"
     Then Validate the Response for side "<resultantResponseLeft>"
@@ -67,8 +65,6 @@ Feature: Functional Test to validate Exception type
       |             | left | BAD_REQUEST           |
 
   @InitURL
-  #IdNotFoundExceptionMapper
-  #NoSuchElementExceptionMapper
   Scenario Outline: Test Scenarios for Exception Type UNSUPPORTED_MEDIA_TYPE_JSON
     Given a POST request was made with value "<postInValue>" on "<side>"
     Then Validate the Response for side "<resultantResponseLeft>"

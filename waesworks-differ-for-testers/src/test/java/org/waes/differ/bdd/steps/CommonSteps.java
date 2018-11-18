@@ -44,7 +44,6 @@ public class CommonSteps {
                 .post(ENDPOINTS +storageId+"/"+ side);
     }
 
-
     public static Response getRequest(int storageId)
     {
        return given().
@@ -67,11 +66,10 @@ public class CommonSteps {
                 then().
                 body(errorMessage,is(rs.getreason()));
         }
-        System.out.println(errorMessage);
     }
 
 
-    static ResponseCode getResponseCode(String rCode)
+    public static ResponseCode getResponseCode(String rCode)
     {
         return rCode.equalsIgnoreCase(ResponseCode.BAD_REQUEST.name())?ResponseCode.BAD_REQUEST:
                 rCode.equalsIgnoreCase(ResponseCode.BASE64Exception.name())?ResponseCode.BASE64Exception:
@@ -79,7 +77,8 @@ public class CommonSteps {
                                 rCode.equalsIgnoreCase(ResponseCode.NOT_IMPLEMENTED.name())?ResponseCode.NOT_IMPLEMENTED:
                                         rCode.equalsIgnoreCase(ResponseCode.OK.name())?ResponseCode.OK:
                                                 rCode.equalsIgnoreCase(ResponseCode.UNSUPPORTED_MEDIA_TYPE_JSON.name())?ResponseCode.UNSUPPORTED_MEDIA_TYPE_JSON:
-                                                        rCode.equalsIgnoreCase(ResponseCode.REQUEST_FAILED.name())?ResponseCode.REQUEST_FAILED:null;
+                                                        rCode.equalsIgnoreCase(ResponseCode.REQUEST_FAILED.name())?ResponseCode.REQUEST_FAILED:
+                                                                rCode.equalsIgnoreCase(ResponseCode.NO_CONTENT.name())?ResponseCode.NO_CONTENT:null;
 
     }
 

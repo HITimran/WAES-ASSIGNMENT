@@ -7,7 +7,8 @@ public enum ResponseCode {
     BAD_REQUEST(400,"Value in request body cannot be empty."),
     REQUEST_FAILED(500,"Request Failed"),
     NOT_IMPLEMENTED(501,"This side is not supported, please use either 'left' or 'right'."),
-    BASE64Exception(415,"Data in body not Base64 formatted.");
+    BASE64Exception(415,"Data in body not Base64 formatted."),
+    NO_CONTENT(204,"No Content");
 
     private final int code;
     private final String reason;

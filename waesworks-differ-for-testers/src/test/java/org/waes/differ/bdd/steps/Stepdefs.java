@@ -6,7 +6,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.apache.log4j.Logger;
 import org.waes.differ.utils.Sides;
 
 import static org.hamcrest.Matchers.is;
@@ -16,7 +15,6 @@ import static org.waes.differ.bdd.steps.CommonSteps.postRequest;
 import static org.waes.differ.utils.StringLiterals.*;
 
 public class Stepdefs {
-    final static Logger log = Logger.getLogger(Stepdefs.class.getName());
     Response getResponse;
 
     @Before("@InitURL")

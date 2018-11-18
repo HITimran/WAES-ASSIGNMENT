@@ -1,7 +1,7 @@
 @FunctionalScenarios
 Feature: Functional Test for WebService
 
-  @InitURL
+  @InitURL @ComparisionType
   Scenario Outline: Test Scenarios for valid Comparision type
     Given a POST to http://localhost:8081/diffassign/v1/diff/<id>/left with value "<valueInLeft>"
     And a POST to http://localhost:8081/diffassign/v1/diff/<id>/right with "<valueInRight>"
@@ -9,12 +9,23 @@ Feature: Functional Test for WebService
     Then the response should contain type: "<responseType>"
 
     Examples:
-      | valueInLeft | valueInRight | id | responseType |
-      | abcdefgh | abcdefgh |1|EQUAL|
-      | 1234 | 123WE678 |2|DIFFERENT_LENGTH|
-      | 1234 | ABCD |3|DIFFERENT_CHARS|
+      | valueInLeft              | valueInRight             | id | responseType |
+      | abcdefgh                 | abcdefgh                 |1   |  EQUAL       |
+      | cGxlYXN1cmUu             | cGxlYXN1cmUu             |2   |  EQUAL       |
+      | N1cm                     | N1cm                     |3   |  EQUAL       |
+      | 010101010101             | 010101010101             |4   |  EQUAL       |
+      | ZzXxDdHhYyTtRrIi         | ZzXxDdHhYyTtRrIi         |5   |  EQUAL       |
+      | YW55IGNhcm5hbCBwbGVhcwYU | YW55IGNhcm5hbCBwbGVhcwYU |6   |  EQUAL       |
+      | SGkgdGhpcyBpbXJhbgUT     | SGkgdGhpcyBpbXJhbgUT     |7   |  EQUAL       |
+      | cGxlYXN1cmUu             | cGxlYXN1cmUu             |8   |  EQUAL       |
+      | 010101010101             | 010101010101             |9   |  EQUAL       |
+      | ZzXxDdHhYyTtRrIi         | ZzXxDdHhYyTtRrIi         |10  |  EQUAL       |
+      | 1234                     | 123WE678                 |11  |  DIFFERENT_LENGTH|
+      | ABCDEFGH                 | ABCD                     |12  |  DIFFERENT_LENGTH|
+      | 1234                     | ABCD                     |13  |  DIFFERENT_CHARS|
 
-  @InitURL
+
+  @InitURL @SingleEmptySideResponse
   Scenario Outline: Test Scenarios in case only single side is filled
     Given a POST request was made with "<postInValue>" with side name as "<side>"
     Then the GET response should contain type: "<responseType>" and Error "<ComparisionType>" and ErrorMessage "<ErrorMessage>"
@@ -24,7 +35,7 @@ Feature: Functional Test for WebService
       | abcdefgh    | right |     OK       | DIFFERENT_LENGTH | Left side contains no value. |
       | 1234        | left  | NO_CONTENT   |                  |                              |
 
-  @InitURL
+  @InitURL @DIFFERENT_CHARS
   Scenario Outline: Test Scenarios for capturing characters difference
     Given a POST request was made with value "<postInLeft>" for left
     And a POST request was made with value "<postInRight>" for right

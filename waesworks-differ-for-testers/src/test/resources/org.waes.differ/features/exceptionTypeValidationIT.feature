@@ -1,7 +1,7 @@
 @ExceptionScenarios
 Feature: Functional Test to validate Exception type
 
-  @InitURL
+  @InitURL @Base64Exception
   Scenario Outline: Test Scenarios for Exception Type DataNotBase64Exception
     Given a POST request was made with value "<postInLeft>" for left
     And a POST request was made with value "<postInRight>" for right
@@ -16,8 +16,10 @@ Feature: Functional Test to validate Exception type
       | QWE$       | QSeRT       | Base64Exception | Base64Exception |
       | A\/1       | QWWW)233    | Base64Exception | Base64Exception |
       | QAZ Z      | ED34*(we    | Base64Exception | Base64Exception |
+      | 0A*e       | 0_&^  | Base64Exception | Base64Exception |
+      | 0Imran_2   | _@Imran2    | Base64Exception | Base64Exception |
 
-    @InitURL
+    @InitURL @UNSUPPORTED_MEDIA_TYPE_JSON
   Scenario Outline: Test Scenarios for Exception Type JSON
     Given a POST request was made with value "<postInLeft>" for left
     And a POST request was made with value "<postInRight>" for right
@@ -28,7 +30,7 @@ Feature: Functional Test to validate Exception type
       | postInLeft | postInRight | responseLeft                | responseRight               |
       | O\wE       | O\     wE   | UNSUPPORTED_MEDIA_TYPE_JSON | UNSUPPORTED_MEDIA_TYPE_JSON |
 
-  @InitURL
+  @InitURL @SideNameNotSupportedException
   Scenario Outline: Test Scenarios for Exception Type SideNameNotSupportedException
     Given a POST request was made with "<postInValue>" with side name as "<side>"
     Then Validate the Response for side "<resultantResponseLeft>"
@@ -44,7 +46,7 @@ Feature: Functional Test to validate Exception type
       | ABCD        | 12345  | NOT_IMPLEMENTED       |
       | ABCD        | 4321   | NOT_IMPLEMENTED       |
 
-  @InitURL
+  @InitURL @REQUEST_FAILED
   Scenario Outline: Test Scenarios for Exception Type REQUEST_FAILED
     Given a POST request was made with value "<postInValue>" on "<side>"
     Then Validate the Response for side "<resultantResponseLeft>"
@@ -55,7 +57,7 @@ Feature: Functional Test to validate Exception type
       | {}                  | right | REQUEST_FAILED        |
       | {}{}}               | left  | REQUEST_FAILED        |
 
-  @InitURL
+  @InitURL @BAD_REQUEST
   Scenario Outline: Test Scenarios for Exception Type BadRequest
     Given a POST request was made with value "<postInValue>" on "<side>"
     Then Validate the Response for side "<resultantResponseLeft>"
@@ -64,7 +66,7 @@ Feature: Functional Test to validate Exception type
       | postInValue | side | resultantResponseLeft |
       |             | left | BAD_REQUEST           |
 
-  @InitURL
+  @InitURL @UNSUPPORTED_MEDIA_TYPE_JSON
   Scenario Outline: Test Scenarios for Exception Type UNSUPPORTED_MEDIA_TYPE_JSON
     Given a POST request was made with value "<postInValue>" on "<side>"
     Then Validate the Response for side "<resultantResponseLeft>"

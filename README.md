@@ -1,6 +1,6 @@
 # WAES-ASSIGNMENT
 
-# differ-for-testers
+## Project Name differ-for-testers
 Ready-made project for a Tester/QA assignment.  
 
 ## The setup
@@ -13,14 +13,17 @@ Ready-made project for a Tester/QA assignment.
 ## Running the application
 From the project root folder:  
 1. run `mvn clean test`  
-2. run `mvn exec:java`  
+2. Open a seperate cmd and run `mvn exec:java`
+3. While the server is up and running run `mvn verify` or `mvn install`
 
-The service runs on `localhost:8081` by default.
-
-### Examples:
-POST `http://localhost:8081/diffassign/v1/diff/3/left` with `"abcd1234"`  
-POST `http://localhost:8081/diffassign/v1/diff/3/right` with `"abcd"`  
-GET `http://localhost:8081/diffassign/v1/diff/3/` returns `{"type": "DIFFERENT_LENGTH"}`  
+After intalling the project successfully a directory will automatically gets created name 'reports'
+reports Content:
+1. Test coverage report
+    - /testCoverage-reports/index.html
+    - /testCoverage-reports/jacoco-sessions.html
+2. Functional Test results
+    - cucumber-reports/cucumber-html-reports/overview-features.html
+    - cucumber-html-report/index.html
 
 ### Suggestion and Improvement:
 
@@ -48,4 +51,8 @@ Same suppose to be handle for
 500 REQUEST_FAILED
 204 NO_CONTENT
 404 NOT_FOUND doesnt throw nay error message when slide length exceeds it upperlimit boundary,negative slide number
+```
+
+```
+Implementation of DELETE and PUT request should also be done
 ```

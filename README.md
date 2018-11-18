@@ -24,13 +24,27 @@ GET `http://localhost:8081/diffassign/v1/diff/3/` returns `{"type": "DIFFERENT_L
 
 ### Suggestion and Improvement:
 
-#### Scenario:
+```
+Scenario:
 - GIVEN Right slide is successfully posted
 - BUT Left slide remains empty
 - WHEN Get request is fetch for above id 
 - Then error thrown as "Left side contains no value."
-```
-##### Suggestion :-
--for vise-a-versa condition ,we should also see message as "Right side contains no value." 
+
+Suggestion for above Scenario:-
+- for vise-a-versa condition ,we should also see message as "Right side contains no value." 
 Presently we see no such message error as 204 (No Content)
+```
+
+```
+The way response code 
+415 UNSUPPORTED_MEDIA_TYPE_JSON was handle with message as "Value in request body must be in JSON format."
+400 BAD_REQUEST was handle with message as "Value in request body cannot be empty."
+501 NOT_IMPLEMENTED was handle with message as "This side is not supported, please use either 'left' or 'right'."
+415 BASE64Exception was handle with message as "Data in body not Base64 formatted."
+404 NOT_FOUND was handle with message as "Id <<>> not initialized."
+Same suppose to be handle for
+200 OK 
+500 REQUEST_FAILED
+204 NO_CONTENT
 ```

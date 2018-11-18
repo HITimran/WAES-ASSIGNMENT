@@ -1,3 +1,8 @@
 .idea
 targets/
 allure-results/
+differ-for-testers.iml
+log4j-application.log
+report/
+target/
+testRun.log

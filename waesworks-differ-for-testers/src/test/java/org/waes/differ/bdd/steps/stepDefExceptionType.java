@@ -3,10 +3,8 @@ package org.waes.differ.bdd.steps;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import io.restassured.response.Response;
-import org.waes.differ.utils.ResponseCode;
 import org.waes.differ.utils.Sides;
 
-import static org.junit.Assert.assertEquals;
 import static org.waes.differ.bdd.steps.CommonSteps.*;
 import static org.waes.differ.bdd.steps.CommonSteps.postRequest;
 import static org.waes.differ.utils.Helpers.Common.*;
@@ -55,7 +53,13 @@ public class stepDefExceptionType {
         this.storageId=storageId;
     }
 
-    @Then("the GET response should contain type: {string} and Error {string} and ErrorMessage {string}")
+    @Given("a POST Request was made with {long} and {string} and {string}")
+    public void a_POST_Request_was_made_with_and_and(long storageId, String side, String bodyContent) {
+        this.storageId=storageId;
+        response= postRequest( bodyContent,  storageId, side);
+    }
+
+    @Then("the above response should contain type: {string} and Error {string} and ErrorMessage {string}")
     public void ValidateGetRequestForStatusCodeErrorTypeErrorMessage(String rCode,String errorType, String errorMsg) {
         response=getRequest(storageId);
         assertCodeAndReasonMessage(response,rCode, errorType, errorMsg);

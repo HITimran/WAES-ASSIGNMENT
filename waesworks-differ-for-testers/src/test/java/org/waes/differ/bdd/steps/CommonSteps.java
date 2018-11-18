@@ -103,6 +103,7 @@ public class CommonSteps {
                                         rCode.equalsIgnoreCase(ResponseCode.OK.name())?ResponseCode.OK:
                                                 rCode.equalsIgnoreCase(ResponseCode.UNSUPPORTED_MEDIA_TYPE_JSON.name())?ResponseCode.UNSUPPORTED_MEDIA_TYPE_JSON:
                                                         rCode.equalsIgnoreCase(ResponseCode.REQUEST_FAILED.name())?ResponseCode.REQUEST_FAILED:
+                                                                rCode.equalsIgnoreCase(ResponseCode.MethodNotAllowed.name())?ResponseCode.MethodNotAllowed:
                                                                 rCode.equalsIgnoreCase(ResponseCode.NO_CONTENT.name())?ResponseCode.NO_CONTENT:null;
 
     }

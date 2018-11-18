@@ -28,7 +28,7 @@ Feature: Functional Test for WebService
   @InitURL @SingleEmptySideResponse
   Scenario Outline: Test Scenarios in case only single side is filled
     Given a POST request was made with "<postInValue>" with side name as "<side>"
-    Then the GET response should contain type: "<responseType>" and Error "<ComparisionType>" and ErrorMessage "<ErrorMessage>"
+    Then the above response should contain type: "<responseType>" and Error "<ComparisionType>" and ErrorMessage "<ErrorMessage>"
 
     Examples:
       | postInValue | side  | responseType | ComparisionType  | ErrorMessage |
@@ -39,7 +39,7 @@ Feature: Functional Test for WebService
   Scenario Outline: Test Scenarios for capturing characters difference
     Given a POST request was made with value "<postInLeft>" for left
     And a POST request was made with value "<postInRight>" for right
-    Then the GET response should contain type: "<responseType>" and Error "<ComparisionType>" and ErrorMessage "<ErrorMessage>"
+    Then the above response should contain type: "<responseType>" and Error "<ComparisionType>" and ErrorMessage "<ErrorMessage>"
 
     Examples:
       | postInLeft  | postInRight  |   responseType  | ComparisionType |           ErrorMessage                       |
@@ -54,9 +54,9 @@ Feature: Functional Test for WebService
   @InitURL @IdNotFound
   Scenario Outline: Test Scenarios for capturing IdNotFound Exception
     Given a GET Request was made with <Id>
-    Then the GET response should contain type: "<responseType>" and Error "<ComparisionType>" and ErrorMessage "<ErrorMessage>"
+    Then the above response should contain type: "<responseType>" and Error "<ComparisionType>" and ErrorMessage "<ErrorMessage>"
 
     Examples:
       |           Id       |   responseType        | ComparisionType |           ErrorMessage                  |
       |          1234      |     NOT_FOUND         | NOT_FOUND       |  ID 1234 not initialized.               |
-      |3454345345433453312 |     NOT_FOUND         | NOT_FOUND       | ID 3454345345433453312 not initialized. |
+      |-3454345345433453312|     NOT_FOUND         | NOT_FOUND       | ID -3454345345433453312 not initialized. |

@@ -8,6 +8,7 @@ public enum ResponseCode {
     REQUEST_FAILED(500,"Request Failed"),
     NOT_IMPLEMENTED(501,"This side is not supported, please use either 'left' or 'right'."),
     BASE64Exception(415,"Data in body not Base64 formatted."),
+    MethodNotAllowed(405,"Method Not Allowed"),
     NO_CONTENT(204,"No Content");
 
     private final int code;

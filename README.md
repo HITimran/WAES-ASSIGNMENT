@@ -32,7 +32,7 @@ Scenario:
 - Then error thrown as "Left side contains no value."
 
 Suggestion for above Scenario:-
-- for vise-a-versa condition ,we should also see message as "Right side contains no value." 
+- for vise-a-versa condition ,we need to implement message such as "Right side contains no value." 
 Presently we see no such message error as 204 (No Content)
 ```
 
@@ -47,4 +47,5 @@ Same suppose to be handle for
 200 OK 
 500 REQUEST_FAILED
 204 NO_CONTENT
+404 NOT_FOUND doesnt throw nay error message when slide length exceeds it upperlimit boundary,negative slide number
 ```

@@ -1,4 +1,4 @@
-package org.waes.differ;
+package org.waes.differ.unitTest;
 
 import org.junit.Test;
 import org.waes.differ.model.Comparison;

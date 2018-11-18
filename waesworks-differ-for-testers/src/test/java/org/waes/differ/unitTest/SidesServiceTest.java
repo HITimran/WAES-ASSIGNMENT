@@ -1,4 +1,4 @@
-package org.waes.differ;
+package org.waes.differ.unitTest;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;

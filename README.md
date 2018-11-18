@@ -13,7 +13,7 @@ From the project root folder:
     - > **mvn clean test** 
 2. Open a seperate cmd and run  
     - > **mvn exec:java** 
-4. While the server is up and running 
+4. Make sure the server is up and running 
 5. Run
     - > **mvn install** 
 

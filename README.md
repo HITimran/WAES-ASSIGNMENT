@@ -1,4 +1,5 @@
 # WAES-ASSIGNMENT
+[![Build Status](https://travis-ci.com/HITimran/WAES-ASSIGNMENT.svg?branch=master)](https://travis-ci.com/HITimran/WAES-ASSIGNMENT)
 
 ## Project Name differ-for-testers
 Ready-made project for a Tester/QA assignment.  

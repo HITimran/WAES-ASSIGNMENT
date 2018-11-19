@@ -1,5 +1,4 @@
 language: java
 jdk: oraclejdk8
 install: true
-script: cd waesworks-differ-for-testers
-       mvn clean -X test
+script: cd waesworks-differ-for-testers && mvn clean -X test

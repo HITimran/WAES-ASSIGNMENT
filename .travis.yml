@@ -2,4 +2,4 @@ language: java
 jdk: oraclejdk8
 install: true
 script: cd waesworks-differ-for-testers
-script: mvn clean -X test
+       mvn clean -X test

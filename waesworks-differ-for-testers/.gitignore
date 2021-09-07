@@ -6,3 +6,4 @@ log4j-application.log
 report/
 target/
 testRun.log
+./idea/
